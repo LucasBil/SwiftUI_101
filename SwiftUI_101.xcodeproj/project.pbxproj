@@ -11,6 +11,7 @@
 		3BDF8D862B5A791C000AB613 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D852B5A791C000AB613 /* ContentView.swift */; };
 		3BDF8D882B5A791E000AB613 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDF8D872B5A791E000AB613 /* Assets.xcassets */; };
 		3BDF8D8B2B5A791E000AB613 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDF8D8A2B5A791E000AB613 /* Preview Assets.xcassets */; };
+		3BDF8D932B5A80AF000AB613 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D922B5A80AF000AB613 /* AddItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		3BDF8D852B5A791C000AB613 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3BDF8D872B5A791E000AB613 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BDF8D8A2B5A791E000AB613 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3BDF8D912B5A7DD6000AB613 /* Answers.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Answers.md; sourceTree = "<group>"; };
+		3BDF8D922B5A80AF000AB613 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +38,7 @@
 		3BDF8D772B5A791C000AB613 = {
 			isa = PBXGroup;
 			children = (
+				3BDF8D912B5A7DD6000AB613 /* Answers.md */,
 				3BDF8D822B5A791C000AB613 /* SwiftUI_101 */,
 				3BDF8D812B5A791C000AB613 /* Products */,
 			);
@@ -53,6 +57,7 @@
 			children = (
 				3BDF8D832B5A791C000AB613 /* SwiftUI_101App.swift */,
 				3BDF8D852B5A791C000AB613 /* ContentView.swift */,
+				3BDF8D922B5A80AF000AB613 /* AddItemView.swift */,
 				3BDF8D872B5A791E000AB613 /* Assets.xcassets */,
 				3BDF8D892B5A791E000AB613 /* Preview Content */,
 			);
@@ -138,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDF8D862B5A791C000AB613 /* ContentView.swift in Sources */,
+				3BDF8D932B5A80AF000AB613 /* AddItemView.swift in Sources */,
 				3BDF8D842B5A791C000AB613 /* SwiftUI_101App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
