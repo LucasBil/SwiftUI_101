@@ -8,9 +8,27 @@
 import SwiftUI
 
 class Inventory : ObservableObject {
-    @Published var loot = ["Epée", "Bouclier", "Armure"]
+    @Published var loot = [
+        LootItem(id: UUID(), name: "Épée de l'Aube", type: .dagger, rarity: .epic, attackStrength: 35, game: availableGames[0]),
+            LootItem(id: UUID(), name: "Bouclier d'Émeraude", type: .shield, rarity: .rare, attackStrength: nil, game: availableGames[2]),
+            LootItem(id: UUID(), name: "Armure Légendaire", type: .unknowned, rarity: .legendary, attackStrength: nil, game: availableGames[4]),
+            LootItem(id: UUID(), name: "Arc du Vent Sylvestre", type: .bow, rarity: .rare, attackStrength: 25, game: availableGames[1]),
+            LootItem(id: UUID(), name: "Anneau des Abysses", type: .ring, rarity: .epic, attackStrength: nil, game: availableGames[3]),
+            LootItem(id: UUID(), name: "Dague des Ombres", type: .dagger, rarity: .common, attackStrength: 18, game: availableGames[0]),
+            LootItem(id: UUID(), name: "Lance de Givre", type: .ice, rarity: .rare, attackStrength: 30, game: availableGames[1]),
+            LootItem(id: UUID(), name: "Casque de Feu Follet", type: .unknowned, rarity: .epic, attackStrength: nil, game: availableGames[2]),
+            LootItem(id: UUID(), name: "Gantelets du Tonnerre", type: .unknowned, rarity: .legendary, attackStrength: nil, game: availableGames[3]),
+            LootItem(id: UUID(), name: "Cape de l'Ombre Noire", type: .unknowned, rarity: .common, attackStrength: nil, game: availableGames[4]),
+            LootItem(
+                id: UUID(),
+                name: "Épée Excalibur",
+                type: .dagger,
+                rarity: .unique,
+                attackStrength: 50,
+                game: availableGames[0])
+    ]
     
-    func addItem(item: String) {
+    func addItem(item: LootItem) {
         loot.append(item)
     }
 }
@@ -22,18 +40,25 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                Button(action: {
-                    inventory.addItem(item:"Magie de feu")
-                }, label: {
-                    Text("Ajouter")
-                })
-
-                ForEach(inventory.loot, id: \.self) { item in
-                    Text(item)
+                ForEach(inventory.loot, id: \.self.id) { item in
+                    NavigationLink {
+                        LootDetailView(item: item)
+                    } label: {
+                        VStack{
+                            HStack{
+                                Circle()
+                                    .fill(item.rarity.color)
+                                    .frame(width: 12, height: 12)
+                                Text(item.name)
+                                Spacer()
+                                Text("\(item.type.rawValue) x\(item.quantity)")
+                            }
+                        }
+                    }
                 }
             }
             .sheet(isPresented: $showAddItemView, content: {
-                    AddItemView()
+                    AddItemView() 
                         .environmentObject(inventory)
             })
             .navigationBarTitle("Loot") // Notre titre de page, choisissez le titre que vous voulez

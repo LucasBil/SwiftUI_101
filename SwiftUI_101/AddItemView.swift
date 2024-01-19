@@ -7,36 +7,109 @@
 
 import SwiftUI
 
-enum Rarity : CaseIterable {
-    case common
-    case uncommon
-    case rare
-    case epic
-    case legendary
-    case unique
+enum Rarity : String, CaseIterable {
+    case common = "common"
+    case uncommon = "uncommon"
+    case rare = "rare"
+    case epic = "epic"
+    case legendary = "legendary"
+    case unique = "unique"
+    
+    var color : Color{
+        switch self {
+            case .common:
+                return .gray // Gris clair
+            case .uncommon:
+                return .green // Vert
+            case .rare:
+                return .blue // Bleu
+            case .epic:
+                return .purple // Violet
+            case .legendary:
+                return .yellow // Or
+            case .unique:
+                return .red // Rouge clair
+        }
+    }
 }
 
 struct AddItemView: View {
     @State var name : String = ""
     @State var rarity : Rarity = Rarity.common
+    @State var game : Game = Game.emptyGame
+    @State var quantity : Int = 0
+    @State var itemType : ItemType = ItemType.unknowned
+    @State var dommage : Int = 0
+    
+    @State var damageable : Bool = false
     @EnvironmentObject var inventory: Inventory
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        Form { // Wrapper de notre formulaire
-            Section { // Correspond à une section du formulaire
-                TextField("Nom de l'objet", text: $name)
-                Picker("Rarete", selection: $rarity) {
-                    ForEach(Rarity.allCases, id: \.self) { rarity in
-                        Text(String(describing: rarity).capitalized)
+        NavigationStack {
+            Form { // Wrapper de notre formulaire
+                Section { // Correspond à une section du formulaire
+                    TextField("Nom de l'objet", text: $name)
+                    Picker("Rarete", selection: $rarity) {
+                        ForEach(Rarity.allCases, id: \.self) { rarity in
+                            Text(String(describing: rarity).capitalized)
+                        }
                     }
                 }
-                Button(action: {
-                    inventory.addItem(item: $name.wrappedValue)
-                },
-                    label: {
-                    Text("Ajouter")
-                })
-            }
+                
+                Section { // Correspond à une section du formulaire
+                    Picker("Jeu", selection: $game) {
+                        Text("Non spécifié").tag(Game.emptyGame)
+                        ForEach(availableGames, id: \.self) { game in
+                            Text(String(describing: game.name).capitalized)
+                        }
+                    }
+                    Stepper("Combien : \(quantity)",
+                            value: $quantity,
+                            in : 0...50,
+                            step: 1
+                    )
+                }
+                
+                Section { // Correspond à une section du formulaire
+                    HStack{
+                        Text("Type")
+                        Spacer()
+                        Text("\(itemType.rawValue)")
+                    }
+                    Picker("Type", selection: $itemType) {
+                        ForEach(ItemType.allCases, id: \.self) { itemtype in
+                            Text(itemtype.rawValue)
+                        }
+                    }
+                    .pickerStyle(PalettePickerStyle())
+                }
+                
+                Section { // Correspond à une section du formulaire
+                    Toggle(isOn: $damageable.animation()){
+                        Text("Item d'attaque ?")
+                    }
+                    if damageable {
+                        Stepper("Combien : \(dommage)",
+                                value: $dommage,
+                                in : 0...50,
+                                step: 1
+                        )
+                    }
+                }
+                
+                Section { // Correspond à une section du formulaire
+                    Button(action: {
+                        inventory.addItem(item:
+                                            LootItem(id: UUID(), quantity: quantity, name: name, type: itemType, rarity: rarity, attackStrength: dommage, game: game)
+                        )
+                        dismiss()
+                    },
+                        label: {
+                        Text("Ajouter l'objet")
+                    })
+                }
+            }.navigationBarTitle("Ajouter un loot")
         }
     }
 }
