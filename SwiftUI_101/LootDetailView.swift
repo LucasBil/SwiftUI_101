@@ -15,7 +15,7 @@ struct LootDetailView: View {
             VStack{
                 RoundedRectangle(cornerRadius: 25)
                     .fill(item.rarity.color.gradient)
-                    .frame(width: 200, height: 200)
+                    .frame(width: 150, height: 150)
                     .shadow(color: item.rarity.color, radius: 50, x: 0, y: 5)
                     .overlay(
                         Text("\(item.type.rawValue)")
@@ -43,8 +43,8 @@ struct LootDetailView: View {
             List([1], id: \.self) { _ in
                 Section(header: Text("Informations")){
                     HStack{
-                        if item.game.coverName != nil {
-                            Image("\(item.game.coverName!)")
+                        if let image = item.game.coverName {
+                            Image("\(image)")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 58)

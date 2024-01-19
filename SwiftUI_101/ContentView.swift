@@ -44,21 +44,12 @@ struct ContentView: View {
                     NavigationLink {
                         LootDetailView(item: item)
                     } label: {
-                        VStack{
-                            HStack{
-                                Circle()
-                                    .fill(item.rarity.color)
-                                    .frame(width: 12, height: 12)
-                                Text(item.name)
-                                Spacer()
-                                Text("\(item.type.rawValue) x\(item.quantity)")
-                            }
-                        }
+                        LootRow(lootItem: item)
                     }
                 }
             }
             .sheet(isPresented: $showAddItemView, content: {
-                    AddItemView() 
+                AddItemView()
                         .environmentObject(inventory)
             })
             .navigationBarTitle("Loot") // Notre titre de page, choisissez le titre que vous voulez

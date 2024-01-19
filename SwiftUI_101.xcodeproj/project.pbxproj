@@ -15,6 +15,7 @@
 		3BDF8D952B5AA43E000AB613 /* LootItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D942B5AA43E000AB613 /* LootItem.swift */; };
 		3BDF8D972B5AA5F6000AB613 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D962B5AA5F6000AB613 /* Game.swift */; };
 		3BDF8D992B5AB894000AB613 /* LootDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D982B5AB894000AB613 /* LootDetailView.swift */; };
+		3BDF8D9B2B5AD58A000AB613 /* LootRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D9A2B5AD58A000AB613 /* LootRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3BDF8D942B5AA43E000AB613 /* LootItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootItem.swift; sourceTree = "<group>"; };
 		3BDF8D962B5AA5F6000AB613 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3BDF8D982B5AB894000AB613 /* LootDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootDetailView.swift; sourceTree = "<group>"; };
+		3BDF8D9A2B5AD58A000AB613 /* LootRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				3BDF8D942B5AA43E000AB613 /* LootItem.swift */,
 				3BDF8D962B5AA5F6000AB613 /* Game.swift */,
 				3BDF8D982B5AB894000AB613 /* LootDetailView.swift */,
+				3BDF8D9A2B5AD58A000AB613 /* LootRow.swift */,
 			);
 			path = SwiftUI_101;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDF8D862B5A791C000AB613 /* ContentView.swift in Sources */,
+				3BDF8D9B2B5AD58A000AB613 /* LootRow.swift in Sources */,
 				3BDF8D972B5AA5F6000AB613 /* Game.swift in Sources */,
 				3BDF8D932B5A80AF000AB613 /* AddItemView.swift in Sources */,
 				3BDF8D992B5AB894000AB613 /* LootDetailView.swift in Sources */,
