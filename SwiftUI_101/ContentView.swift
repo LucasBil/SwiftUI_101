@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 class Inventory : ObservableObject {
     @Published var loot = [
@@ -39,29 +40,47 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(inventory.loot, id: \.self.id) { item in
-                    NavigationLink {
-                        LootDetailView(item: item)
-                    } label: {
-                        LootRow(lootItem: item)
+            VStack{
+                Section{
+                    List {
+                        ForEach(inventory.loot, id: \.self.id) { item in
+                            NavigationLink {
+                                LootDetailView(item: item)
+                            } label: {
+                                LootRow(lootItem: item)
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $showAddItemView, content: {
+                        AddItemView()
+                                .environmentObject(inventory)
+                    })
+                    .navigationBarTitle("Loot") // Notre titre de page, choisissez le titre que vous voulez
+                    .toolbar(content: { // La barre d'outil de notre page
+                        ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                            Button(action: {
+                                showAddItemView.toggle() // L'action de notre bouton
+                            }, label: {
+                                Image(systemName: "plus.circle.fill")
+                            })
+                        }
+                    })
+                }
+                Section{
+                    List([1], id: \.self){ _ in
+                        Section(header: Text("Statistique")){
+                            Chart(inventory.loot) { item in
+                                if(item.attackStrength != nil){
+                                    BarMark(
+                                        x: .value("Name", item.name),
+                                        y: .value("Occurence",item.attackStrength!)
+                                     )
+                                }
+                            }
+                        }
                     }
                 }
             }
-            .sheet(isPresented: $showAddItemView, content: {
-                AddItemView()
-                        .environmentObject(inventory)
-            })
-            .navigationBarTitle("Loot") // Notre titre de page, choisissez le titre que vous voulez
-            .toolbar(content: { // La barre d'outil de notre page
-                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                    Button(action: {
-                        showAddItemView.toggle() // L'action de notre bouton
-                    }, label: {
-                        Image(systemName: "plus.circle.fill")
-                    })
-                }
-            })
         }
     }
 }

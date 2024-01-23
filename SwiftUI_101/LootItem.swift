@@ -16,7 +16,7 @@ struct LootItem: Identifiable {
     var attackStrength : Int?
     var game : Game
     
-    static let emptyLootItem = LootItem(id: UUID(), name: "Arc Antique", type: ItemType.bow, rarity: Rarity.rare, game: Game.emptyGame)
+    static let emptyLootItem = LootItem(id: UUID(), name: "Arc Antique", type: ItemType.bow, rarity: Rarity.unique, game: Game.emptyGame)
 }
 
 enum ItemType : String, CaseIterable {

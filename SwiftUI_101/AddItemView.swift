@@ -42,6 +42,8 @@ struct AddItemView: View {
     @State var dommage : Int = 0
     
     @State var damageable : Bool = false
+    @State var formIsValid : LootItem?
+    @State var invalidField : String?
     @EnvironmentObject var inventory: Inventory
     @Environment(\.dismiss) private var dismiss
     
@@ -100,16 +102,38 @@ struct AddItemView: View {
                 
                 Section { // Correspond à une section du formulaire
                     Button(action: {
-                        inventory.addItem(item:
-                                            LootItem(id: UUID(), quantity: quantity, name: name, type: itemType, rarity: rarity, attackStrength: dommage, game: game)
-                        )
+                        let loot = LootItem(id: UUID(), quantity: quantity, name: name, type: itemType, rarity: rarity, attackStrength: dommage, game: game)
+                        
+                        if(name.count < 2 || name.isEmpty){
+                            invalidField = "name"
+                            formIsValid = loot
+                            return
+                        }
+                        if(itemType ==  ItemType.unknowned){
+                            invalidField = "type"
+                            formIsValid = loot
+                            return
+                        }
+                        if(game == Game.emptyGame){
+                            invalidField = "game"
+                            formIsValid = loot
+                            return
+                        }
+                        inventory.addItem(item:loot)
                         dismiss()
                     },
                         label: {
                         Text("Ajouter l'objet")
                     })
                 }
-            }.navigationBarTitle("Ajouter un loot")
+            }
+            .navigationBarTitle("Ajouter un loot")
+            .alert(item: $formIsValid) { _ in
+                        Alert(title: Text("Form is invalid"),
+                              message: Text("Le champs " + invalidField! + " est invalid"),
+                              dismissButton: .default(Text("Dismiss"))
+                        )
+                    }
         }
     }
 }
