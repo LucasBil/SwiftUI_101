@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0780422B6396DE0010241D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0780412B6396DE0010241D /* OnboardingView.swift */; };
+		3B0780442B6396F20010241D /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0780432B6396F20010241D /* OnboardingPageView.swift */; };
 		3BDF8D842B5A791C000AB613 /* SwiftUI_101App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D832B5A791C000AB613 /* SwiftUI_101App.swift */; };
 		3BDF8D862B5A791C000AB613 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8D852B5A791C000AB613 /* ContentView.swift */; };
 		3BDF8D882B5A791E000AB613 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDF8D872B5A791E000AB613 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B0780412B6396DE0010241D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		3B0780432B6396F20010241D /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		3BDF8D802B5A791C000AB613 /* SwiftUI_101.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_101.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BDF8D832B5A791C000AB613 /* SwiftUI_101App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_101App.swift; sourceTree = "<group>"; };
 		3BDF8D852B5A791C000AB613 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B0780402B6396C60010241D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3B0780412B6396DE0010241D /* OnboardingView.swift */,
+				3B0780432B6396F20010241D /* OnboardingPageView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		3BDF8D772B5A791C000AB613 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +76,7 @@
 		3BDF8D822B5A791C000AB613 /* SwiftUI_101 */ = {
 			isa = PBXGroup;
 			children = (
+				3B0780402B6396C60010241D /* view */,
 				3BDF8D832B5A791C000AB613 /* SwiftUI_101App.swift */,
 				3BDF8D852B5A791C000AB613 /* ContentView.swift */,
 				3BDF8D922B5A80AF000AB613 /* AddItemView.swift */,
@@ -159,6 +173,8 @@
 				3BDF8D972B5AA5F6000AB613 /* Game.swift in Sources */,
 				3BDF8D932B5A80AF000AB613 /* AddItemView.swift in Sources */,
 				3BDF8D992B5AB894000AB613 /* LootDetailView.swift in Sources */,
+				3B0780422B6396DE0010241D /* OnboardingView.swift in Sources */,
+				3B0780442B6396F20010241D /* OnboardingPageView.swift in Sources */,
 				3BDF8D952B5AA43E000AB613 /* LootItem.swift in Sources */,
 				3BDF8D842B5A791C000AB613 /* SwiftUI_101App.swift in Sources */,
 			);
