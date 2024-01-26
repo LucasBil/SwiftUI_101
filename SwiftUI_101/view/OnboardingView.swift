@@ -10,39 +10,45 @@ import SwiftUI
 enum WidgetPageView : CaseIterable {
     case HOME
     case WISHLIST
-    
-    func widgetPage(widgetSelected : Binding<WidgetPageView>) -> OnboardingPageView {
-        switch self {
-            case .HOME :
-                return OnboardingPageView(
-                    idWidget : widgetSelected,
-                    title: "Avoir un widget sur l'écran d'accueil",
-                    description: "Accédez rapidement à vos fonctionnalités clés depuis l'écran d'acceuil de votre appareil",
-                    image: nil
-                )
-            case .WISHLIST:
-                return OnboardingPageView(
-                    idWidget : widgetSelected,
-                    title: "Votre wishlist",
-                    description: "Créez une liste de souhaits pour garder une trace des articles que vous voulez acquérir",
-                    image: "wand.and.stars"
-                )
-        }
-    }
+    case OVERVIEW
 }
 
 struct OnboardingView: View {
+    
+    @State var widgetSelected :WidgetPageView = .HOME
+    
+    let widgets = [
+        OnboardingPageDataSource(
+            widgetType: .HOME,
+            title: "Gérer ses loots",
+            description: "Ajoutez facilement vos trouvailles et vos achats à votre collection personnelle",
+            image: "gym.bag.fill"
+        ),
+        OnboardingPageDataSource(
+            widgetType: .WISHLIST,
+            title: "Votre wishlist",
+            description: "Créez une liste de souhaits pour garder une trace des articles que vous voulez acquérir",
+            image: "wand.and.stars"
+        ),
+        OnboardingPageDataSource(
+            widgetType: .OVERVIEW,
+            title: "En un coup d'oeuil",
+            description: "Accédez rapidement à vos fonctionnalités clés depuis l'écran d'accueil de votre appareil.",
+            image: "iphone.case"
+        )
+    ]
+    
     var body: some View {
-        
-        @State var widgetSelected : WidgetPageView = .HOME
-        
         TabView(selection: $widgetSelected,
                 content:  {
-            ForEach(WidgetPageView.allCases, id: \.self){ widget in
+            ForEach(widgets, id: \.widgetType){ widget in
                 VStack{
-                    widget.widgetPage(widgetSelected: $widgetSelected)
-                }.tabItem { Text("Tab Label") }
-                    .tag(WidgetPageView.allCases.firstIndex(of: widget))
+                    OnboardingPageView(
+                        selectedWidget : $widgetSelected,
+                        dataSource: widget
+                    )
+                }.tabItem { }
+                    .tag(widget.widgetType)
             }
         })
         .tabViewStyle(.page)
@@ -51,4 +57,10 @@ struct OnboardingView: View {
 
 #Preview {
     OnboardingView()
+}
+
+#Preview {
+    OnboardingView()
+        .preferredColorScheme(.dark)
+        .previewDisplayName("Dark Mode")
 }

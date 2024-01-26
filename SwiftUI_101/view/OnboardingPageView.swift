@@ -7,16 +7,21 @@
 
 import SwiftUI
 
-struct OnboardingPageView: View {
-    @Binding var idWidget : WidgetPageView
+struct OnboardingPageDataSource {
+    let widgetType : WidgetPageView
     let title : String
     let description : String
     let image : String?
+}
+
+struct OnboardingPageView: View {
+    @Binding var selectedWidget : WidgetPageView
+    let dataSource : OnboardingPageDataSource
     
     var body: some View {
         Spacer()
         
-        Text(title)
+        Text(dataSource.title)
             .fontWeight(.bold)
             .fontWidth(.standard)
             .font(.system(size: 60))
@@ -28,16 +33,22 @@ struct OnboardingPageView: View {
         
         ZStack{
             Circle()
-                .frame(width: 100)
-            if let icon = image {
+                .fill(Color.red.gradient)
+                .frame(width: 200)
+            if let icon = dataSource.image {
                 Image(systemName: icon)
-                    .colorInvert()
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                    .font(.system(size: 80))
+                    .padding()
+                    .foregroundColor(.white)
             }
         }
         
         Spacer()
         
-        Text(description)
+        Text(dataSource.description)
             .fontWidth(.expanded)
             .multilineTextAlignment(.center)
             .frame(
@@ -47,10 +58,19 @@ struct OnboardingPageView: View {
         
         Spacer()
         
-        Button(action: { idWidget = .WISHLIST }, label: {
+        Button(action: {
+            switch dataSource.widgetType {
+                case .HOME:
+                    selectedWidget = .WISHLIST
+                case .WISHLIST:
+                    selectedWidget = .OVERVIEW
+                case .OVERVIEW:
+                    UserDefaults.standard.set(true, forKey: "isOnboardingDone")
+            }
+        }, label: {
             Spacer()
                 .frame(width: 15)
-            Text("Suivant")
+            Text(dataSource.widgetType != WidgetPageView.WISHLIST ? "Continuer" : "Commencer")
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
             Spacer()
